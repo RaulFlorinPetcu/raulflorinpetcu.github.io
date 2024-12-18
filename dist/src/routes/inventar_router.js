@@ -13,4 +13,7 @@ inventar_router.post("/import_csv_to_inventar", upload.single("file"), (req, res
 inventar_router.post("/create_inventar", AuthMiddleware_1.verifyToken, (req, res) => inventar_controller_1.default.create_inventar(req, res));
 inventar_router.get("/get_inventare", AuthMiddleware_1.verifyToken, (req, res) => inventar_controller_1.default.get_inventare(req, res));
 inventar_router.post("/get_inventar_products", AuthMiddleware_1.verifyToken, (req, res) => inventar_controller_1.default.get_inventar_products(req, res));
+inventar_router.post("/add_produs", AuthMiddleware_1.verifyToken, (req, res) => inventar_controller_1.default.add_produs(req, res));
+inventar_router.post("/delete_produs", AuthMiddleware_1.verifyToken, (req, res) => inventar_controller_1.default.delete_produs(req, res));
+inventar_router.post("/update_produs", AuthMiddleware_1.verifyToken, (req, res) => inventar_controller_1.default.update_produs(req, res));
 exports.default = inventar_router;

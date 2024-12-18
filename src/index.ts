@@ -7,7 +7,7 @@ import app from './app';
 
 
 // Server Setup
-const port = 9854;
+const port = 5000;
 
 
 

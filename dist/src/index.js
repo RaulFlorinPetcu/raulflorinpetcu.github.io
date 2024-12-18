@@ -9,7 +9,7 @@ const data_source_1 = __importDefault(require("./data_source"));
 const ConsoleLogger_1 = __importDefault(require("./misc/ConsoleLogger"));
 const app_1 = __importDefault(require("./app"));
 // Server Setup
-const port = 9854;
+const port = 5000;
 // Server Start Up
 ConsoleLogger_1.default.log_message({ type: "SERVER", text: "Launching..." });
 data_source_1.default.initialize()

@@ -62,6 +62,10 @@ class UserController {
                 res.status(500).send(err);
                 return;
             });
+            if (!db_user) {
+                res.status(401).send("Invalid credentials");
+                return;
+            }
             const is_password_valid = yield Encrypt_1.Encrypt.comparePassword(password, db_user.password_hash);
             if (is_password_valid === false) {
                 res.status(401).send("Invalid credentials");

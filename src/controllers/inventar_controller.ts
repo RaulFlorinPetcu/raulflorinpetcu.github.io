@@ -7,6 +7,7 @@ import USER from "../tables/USER";
 import DateTimeService from "../misc/DateTimeService";
 import PRODUS from "../tables/PRODUS";
 import NewProdusDetails from "../interfaces/NewProdusDetails";
+import Produs from "../interfaces/Produs";
 
 const inventar_repository = ServerDataSource.getRepository(INVENTAR);
 const user_repository = ServerDataSource.getRepository(USER);
@@ -258,6 +259,21 @@ class InventarController {
 
         res.send("Produs updated successfully");
         return;
+    }
+
+    static async import_products_to_inventar(req: Request, res: Response) {
+        const new_inventar_id = req.body.new_inventar_id;
+        const selected_products: Array<Produs> = req.body.selected_products;
+
+        const new_products: Array<Produs> = [];
+
+        selected_products.forEach((produs) => {
+            produs.inventar_id = new_inventar_id;
+            new_products.push(produs)
+        });
+
+        res.send(new_products);
+
     }
 }
 

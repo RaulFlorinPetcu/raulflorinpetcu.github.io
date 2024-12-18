@@ -58,6 +58,11 @@ class UserController {
             return;
         });
 
+        if(!db_user) {
+            res.status(401).send("Invalid credentials");
+            return;
+        }
+
         const is_password_valid = await Encrypt.comparePassword(password, db_user!.password_hash);
 
         if(is_password_valid === false) {
