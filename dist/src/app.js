@@ -20,7 +20,4 @@ app.use(body_parser_1.default.json());
 app.use("", misc_router_1.default);
 app.use("", inventar_router_1.default);
 app.use("", user_router_1.default);
-app.get("/", (req, res) => {
-    res.send("Hi");
-});
 exports.default = app;

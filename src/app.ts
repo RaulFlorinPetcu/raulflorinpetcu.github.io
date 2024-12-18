@@ -19,8 +19,5 @@ app.use(bodyParser.json());
 app.use("", misc_router);
 app.use("", inventar_router);
 app.use("", user_router);
-app.get("/", (req: Request, res: Response) => {
-    res.send("Hi")
-})
 
 export default app;
