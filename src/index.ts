@@ -1,30 +1,15 @@
-// Dependencies
-import express  from 'express';
-import cors from 'cors';
-import bodyParser from 'body-parser';
-
-
 // Inter Dependencies
+import "reflect-metadata";
 import ServerDataSource from './data_source';
 import ConsoleLogger from './misc/ConsoleLogger';
 import { AnyError } from 'typeorm';
-import misc_router from './routes/misc_router';
-import inventar_router from './routes/inventar_router';
-import user_router from './routes/user_router';
+import app from './app';
+
 
 // Server Setup
-// Server Setup - Initialization
-const app = express();
-const port = 5000;
+const port = 9854;
 
-// Server Setup - Config
-app.use(cors({origin: "*"}));
-app.use(bodyParser.json());
 
-// Server Setup - Routes
-app.use("", misc_router);
-app.use("", inventar_router);
-app.use("", user_router);
 
 // Server Start Up
 ConsoleLogger.log_message({type: "SERVER", text: "Launching..."});
