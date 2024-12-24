@@ -7,13 +7,14 @@ const typeorm_1 = require("typeorm");
 const USER_1 = __importDefault(require("./tables/USER"));
 const INVENTAR_1 = __importDefault(require("./tables/INVENTAR"));
 const PRODUS_1 = __importDefault(require("./tables/PRODUS"));
+require('dotenv').config();
 const ServerDataSource = new typeorm_1.DataSource({
     type: "postgres",
-    host: "db.vjymlglrbphrxhgpdtlh.supabase.co",
-    port: 5432,
-    database: "postgres",
-    username: "postgres",
-    password: "aDRIAN675231!@",
+    host: process.env.DB_HOST,
+    port: Number(process.env.DB_PORT),
+    database: process.env.DB_DATABASE,
+    username: process.env.DB_USERNAME,
+    password: process.env.DB_PASSWORD,
     synchronize: true,
     logging: false,
     entities: [USER_1.default, INVENTAR_1.default, PRODUS_1.default],
