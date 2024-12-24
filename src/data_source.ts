@@ -4,8 +4,12 @@ import INVENTAR from "./tables/INVENTAR";
 import PRODUS from "./tables/PRODUS";
 
 const ServerDataSource = new DataSource({
-    type: "better-sqlite3",
-    database: "./database/main.sqlite",
+    type: "postgres",
+    host: "db.vjymlglrbphrxhgpdtlh.supabase.co",
+    port: 5432,
+    database: "postgres",
+    username: "postgres",
+    password: "aDRIAN675231!@",
     synchronize: true,
     logging: false,
     entities: [USER, INVENTAR, PRODUS],
