@@ -23,4 +23,5 @@ data_source_1.default.initialize()
     ConsoleLogger_1.default.log_warning_message({ type: "SERVER - ERROR", text: "Database could not be initialized, read the error below or in the system logs." });
     ConsoleLogger_1.default.log_error_message(err.message);
     ConsoleLogger_1.default.log_error_stack(err.stack);
+    console.log(err);
 });
