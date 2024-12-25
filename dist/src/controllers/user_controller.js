@@ -73,7 +73,8 @@ class UserController {
             }
             else {
                 const new_token = yield jsonwebtoken_1.default.sign({
-                    user_id: db_user.user_id
+                    user_id: db_user.user_id,
+                    user_name: user_name
                 }, "GwWifouXZnV43M0MuKROBmerk4xwbH6M");
                 res.send(new_token);
                 return;

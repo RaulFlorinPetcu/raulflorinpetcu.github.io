@@ -71,7 +71,8 @@ class UserController {
         }
         else {
             const new_token = await jsonwebtoken.sign({
-                user_id: db_user!.user_id
+                user_id: db_user!.user_id,
+                user_name: user_name
             }, "GwWifouXZnV43M0MuKROBmerk4xwbH6M");
 
             res.send(new_token);
