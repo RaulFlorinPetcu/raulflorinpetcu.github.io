@@ -14,4 +14,5 @@ inventar_router.post("/get_inventar_products", verifyToken, (req: Request, res: 
 inventar_router.post("/add_produs", verifyToken, (req: Request, res: Response) => InventarController.add_produs(req, res));
 inventar_router.post("/delete_produs", verifyToken, (req: Request, res: Response) => InventarController.delete_produs(req, res));
 inventar_router.post("/update_produs", verifyToken, (req: Request, res: Response) => InventarController.update_produs(req, res));
+inventar_router.post("/import_products_to_inventar", verifyToken, (req: Request, res: Response) => InventarController.import_products_to_inventar(req, res))
 export default inventar_router;

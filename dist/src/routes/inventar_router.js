@@ -16,4 +16,5 @@ inventar_router.post("/get_inventar_products", AuthMiddleware_1.verifyToken, (re
 inventar_router.post("/add_produs", AuthMiddleware_1.verifyToken, (req, res) => inventar_controller_1.default.add_produs(req, res));
 inventar_router.post("/delete_produs", AuthMiddleware_1.verifyToken, (req, res) => inventar_controller_1.default.delete_produs(req, res));
 inventar_router.post("/update_produs", AuthMiddleware_1.verifyToken, (req, res) => inventar_controller_1.default.update_produs(req, res));
+inventar_router.post("/import_products_to_inventar", AuthMiddleware_1.verifyToken, (req, res) => inventar_controller_1.default.import_products_to_inventar(req, res));
 exports.default = inventar_router;
