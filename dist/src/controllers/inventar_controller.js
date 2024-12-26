@@ -243,8 +243,7 @@ class InventarController {
         return __awaiter(this, void 0, void 0, function* () {
             const new_inventar_id = req.body.new_inventar_id;
             const selected_products = req.body.selected_products;
-            const new_products = [];
-            selected_products.forEach((produs) => __awaiter(this, void 0, void 0, function* () {
+            yield Promise.all(selected_products.map((produs, index) => __awaiter(this, void 0, void 0, function* () {
                 const new_produs = new PRODUS_1.default();
                 new_produs.name = produs.name;
                 new_produs.price = produs.price;
@@ -254,16 +253,14 @@ class InventarController {
                 new_produs.created_at = DateTimeService_1.default.format_standard_date(new Date());
                 new_produs.updated_at = DateTimeService_1.default.format_standard_date(new Date());
                 new_produs.inventar_id = new_inventar_id;
-                new_products.push(new_produs);
-                if (new_products.length === selected_products.length) {
-                    yield Promise.all(new_products.map((produs, index) => __awaiter(this, void 0, void 0, function* () {
-                        yield produs_repository.save(new_produs);
-                    })))
-                        .then(() => {
-                        res.send("New products added");
-                    });
-                }
-            }));
+                yield produs_repository.save(new_produs).catch((err) => {
+                    res.status(500).send(err);
+                    return;
+                });
+            })))
+                .then(() => {
+                res.send("New products imported");
+            });
         });
     }
 }

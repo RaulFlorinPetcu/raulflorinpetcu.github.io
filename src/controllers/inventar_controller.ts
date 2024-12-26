@@ -265,9 +265,8 @@ class InventarController {
         const new_inventar_id = req.body.new_inventar_id;
         const selected_products: Array<Produs> = req.body.selected_products;
 
-        const new_products: Array<Produs> = [];
 
-        selected_products.forEach(async (produs) => {
+        await Promise.all(selected_products.map(async (produs, index) => {
             const new_produs = new PRODUS();
             new_produs.name = produs.name;
             new_produs.price = produs.price;
@@ -277,16 +276,15 @@ class InventarController {
             new_produs.created_at = DateTimeService.format_standard_date(new Date());
             new_produs.updated_at = DateTimeService.format_standard_date(new Date());
             new_produs.inventar_id = new_inventar_id;
-            new_products.push(new_produs)
-            if(new_products.length === selected_products.length) {
-                await Promise.all(new_products.map(async (produs, index) => {
-                    await produs_repository.save(new_produs)
-                }))
-                .then(() => {
-                    res.send("New products added")
-                })
-            }
-        });
+
+            await produs_repository.save(new_produs!).catch((err) => {
+                res.status(500).send(err);
+                return;
+            });
+        }))
+        .then(() => {
+            res.send("New products imported")
+        })
     }
 }
 
