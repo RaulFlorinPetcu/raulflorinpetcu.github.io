@@ -268,11 +268,19 @@ class InventarController {
         const new_products: Array<Produs> = [];
 
         selected_products.forEach(async (produs) => {
-            produs.inventar_id = new_inventar_id;
-            new_products.push(produs)
+            const new_produs = new PRODUS();
+            new_produs.name = produs.name;
+            new_produs.price = produs.price;
+            new_produs.quantity = produs.quantity;
+            new_produs.tva = produs.tva;
+            new_produs.unit_measure = produs.unit_measure;
+            new_produs.created_at = DateTimeService.format_standard_date(new Date());
+            new_produs.updated_at = DateTimeService.format_standard_date(new Date());
+            new_produs.inventar_id = new_inventar_id;
+            new_products.push(new_produs)
             if(new_products.length === selected_products.length) {
                 await Promise.all(new_products.map(async (produs, index) => {
-                    await produs_repository.save(produs)
+                    await produs_repository.save(new_produs)
                 }))
                 .then(() => {
                     res.send("New products added")
