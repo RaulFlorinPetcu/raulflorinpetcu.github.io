@@ -267,13 +267,18 @@ class InventarController {
 
         const new_products: Array<Produs> = [];
 
-        selected_products.forEach((produs) => {
+        selected_products.forEach(async (produs) => {
             produs.inventar_id = new_inventar_id;
             new_products.push(produs)
+            if(new_products.length === selected_products.length) {
+                await Promise.all(new_products.map(async (produs, index) => {
+                    await produs_repository.save(produs)
+                }))
+                .then(() => {
+                    res.send("New products added")
+                })
+            }
         });
-
-        res.send(new_products);
-
     }
 }
 

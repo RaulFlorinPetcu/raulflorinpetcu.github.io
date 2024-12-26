@@ -244,11 +244,18 @@ class InventarController {
             const new_inventar_id = req.body.new_inventar_id;
             const selected_products = req.body.selected_products;
             const new_products = [];
-            selected_products.forEach((produs) => {
+            selected_products.forEach((produs) => __awaiter(this, void 0, void 0, function* () {
                 produs.inventar_id = new_inventar_id;
                 new_products.push(produs);
-            });
-            res.send(new_products);
+                if (new_products.length === selected_products.length) {
+                    yield Promise.all(new_products.map((produs, index) => __awaiter(this, void 0, void 0, function* () {
+                        yield produs_repository.save(produs);
+                    })))
+                        .then(() => {
+                        res.send("New products added");
+                    });
+                }
+            }));
         });
     }
 }
