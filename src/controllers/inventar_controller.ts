@@ -286,6 +286,20 @@ class InventarController {
             res.send("New products imported")
         })
     }
+
+    static async delete_inventar(req: Request, res: Response) {
+        const inventar_id = req.body.inventar_id;
+        
+        await inventar_repository.delete({
+            inventar_id: inventar_id
+        }).catch((err) => {
+            res.status(500).send(err);
+            return
+        })
+
+        res.send("Inventar deleted")
+        return
+    }
 }
 
 export default InventarController;

@@ -263,5 +263,18 @@ class InventarController {
             });
         });
     }
+    static delete_inventar(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const inventar_id = req.body.inventar_id;
+            yield inventar_repository.delete({
+                inventar_id: inventar_id
+            }).catch((err) => {
+                res.status(500).send(err);
+                return;
+            });
+            res.send("Inventar deleted");
+            return;
+        });
+    }
 }
 exports.default = InventarController;
