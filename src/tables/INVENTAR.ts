@@ -12,6 +12,9 @@ class INVENTAR {
     iventar_name: string;
 
     @Column({nullable: true})
+    inventar_tva: number
+
+    @Column({nullable: true})
     created_at: string;
 
     @Column({nullable: true})

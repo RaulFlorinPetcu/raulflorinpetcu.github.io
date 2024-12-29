@@ -26,6 +26,10 @@ __decorate([
 ], INVENTAR.prototype, "iventar_name", void 0);
 __decorate([
     (0, typeorm_1.Column)({ nullable: true }),
+    __metadata("design:type", Number)
+], INVENTAR.prototype, "inventar_tva", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ nullable: true }),
     __metadata("design:type", String)
 ], INVENTAR.prototype, "created_at", void 0);
 __decorate([

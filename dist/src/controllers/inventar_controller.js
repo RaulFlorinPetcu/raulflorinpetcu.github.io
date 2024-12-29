@@ -87,6 +87,7 @@ class InventarController {
         return __awaiter(this, void 0, void 0, function* () {
             const user_name = req.body.user_name;
             const inventar_name = req.body.inventar_name;
+            const inventar_tva = req.body.inventar_tva;
             if (inventar_name === null || inventar_name === undefined) {
                 res.status(401).send("Name cannot be empty");
                 return;
@@ -114,6 +115,7 @@ class InventarController {
                 });
                 const new_inventar = new INVENTAR_1.default();
                 new_inventar.iventar_name = inventar_name;
+                new_inventar.inventar_tva = inventar_tva;
                 new_inventar.created_by = user.user_id;
                 new_inventar.created_at = DateTimeService_1.default.format_standard_date(new Date());
                 new_inventar.updated_at = DateTimeService_1.default.format_standard_date(new Date());

@@ -85,6 +85,7 @@ class InventarController {
     static async create_inventar(req: Request, res: Response) {
         const user_name = req.body.user_name;
         const inventar_name = req.body.inventar_name;
+        const inventar_tva = req.body.inventar_tva;
 
         if(inventar_name === null || inventar_name === undefined) {
             res.status(401).send("Name cannot be empty");
@@ -117,6 +118,7 @@ class InventarController {
 
             const new_inventar = new INVENTAR();
             new_inventar.iventar_name = inventar_name
+            new_inventar.inventar_tva = inventar_tva;
             new_inventar.created_by = user!.user_id;
             new_inventar.created_at = DateTimeService.format_standard_date(new Date());
             new_inventar.updated_at = DateTimeService.format_standard_date(new Date());
