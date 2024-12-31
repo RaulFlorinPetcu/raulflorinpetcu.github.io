@@ -193,25 +193,17 @@ class PdfController {
                 </html>
                 `;
                     const browser = yield puppeteer_1.default.launch({
-                        headless: true,
-                        args: [
-                            "--disable-setuid-sandbox",
-                            "--no-sandbox",
-                            "--single-process",
-                            "--no-zygote",
-                        ],
-                        executablePath: process.env.NODE_ENV === "production"
-                            ? process.env.PUPPETEER_EXECUTABLE_PATH
-                            : puppeteer_1.default.executablePath()
+                        headless: true
                     });
                     const page = yield browser.newPage();
                     yield page.setContent(html_template);
                     const date = new Date().toLocaleDateString();
                     const time = new Date().toTimeString().slice(0, 8);
                     const unique_identifier = new Date().getTime();
+                    console.log(__dirname);
                     // Generate PDF for the report
                     yield page.pdf({
-                        path: `/temp/pdf_generated_files/report_${unique_identifier}.pdf`,
+                        path: `./temp/pdf_generated_files/report_${unique_identifier}.pdf`,
                         format: "A4",
                         displayHeaderFooter: true,
                         // headerTemplate: '<div id="header-template" style="font-size:12px !important; color:#808080; padding-left:10px"><span class="date"></span></div>',
@@ -222,7 +214,6 @@ class PdfController {
                         }
                     });
                     yield browser.close();
-                    console.log(__dirname);
                     res.sendFile(`report_${unique_identifier}.pdf`, { root: "temp/pdf_generated_files/" }, (err) => {
                         if (err) {
                             console.log(err);
