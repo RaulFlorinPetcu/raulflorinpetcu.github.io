@@ -7,7 +7,15 @@ WORKDIR /usr/src/app
 
 EXPOSE 5000
 USER node
-COPY --chown=node:node package*.json ./
-RUN npm install
-COPY --chown=node:node . .
+
+RUN npm config set unsafe-perm true
+
+RUN npm install --silent
+
+COPY . .
+
+RUN chown -R node /app/node_modules
+
+USER node
+
 RUN npm run start
