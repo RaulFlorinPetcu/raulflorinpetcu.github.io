@@ -8,9 +8,7 @@ WORKDIR /usr/src/app
 EXPOSE 5000
 USER node
 
-RUN npm config set unsafe-perm true
-
-RUN npm install --silent
+RUN sudo npm install --unsafe-perm=true
 
 COPY . .
 
