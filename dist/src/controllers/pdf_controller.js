@@ -16,7 +16,6 @@ const INVENTAR_1 = __importDefault(require("../tables/INVENTAR"));
 const data_source_1 = __importDefault(require("../data_source"));
 const PRODUS_1 = __importDefault(require("../tables/PRODUS"));
 const puppeteer_1 = __importDefault(require("puppeteer"));
-const FileManager_1 = __importDefault(require("../misc/FileManager"));
 const inventar_repository = data_source_1.default.getRepository(INVENTAR_1.default);
 const produs_repository = data_source_1.default.getRepository(PRODUS_1.default);
 class PdfController {
@@ -212,7 +211,7 @@ class PdfController {
                     const unique_identifier = new Date().getTime();
                     // Generate PDF for the report
                     yield page.pdf({
-                        path: `./temp/pdf_generated_files/report_${unique_identifier}.pdf`,
+                        path: `/temp/pdf_generated_files/report_${unique_identifier}.pdf`,
                         format: "A4",
                         displayHeaderFooter: true,
                         // headerTemplate: '<div id="header-template" style="font-size:12px !important; color:#808080; padding-left:10px"><span class="date"></span></div>',
@@ -230,7 +229,7 @@ class PdfController {
                             res.sendStatus(500);
                         }
                         else {
-                            FileManager_1.default.delete_file(`temp/pdf_generated_files/report_${unique_identifier}.pdf`);
+                            // FileManager.delete_file(`temp/pdf_generated_files/report_${unique_identifier}.pdf`)
                         }
                     });
                 }

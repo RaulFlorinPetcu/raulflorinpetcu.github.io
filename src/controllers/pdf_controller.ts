@@ -218,7 +218,7 @@ class PdfController {
     
                 // Generate PDF for the report
                 await page.pdf({ 
-                    path: `./temp/pdf_generated_files/report_${unique_identifier}.pdf`, 
+                    path: `/temp/pdf_generated_files/report_${unique_identifier}.pdf`, 
                     format: "A4", 
                     displayHeaderFooter: true,
                     // headerTemplate: '<div id="header-template" style="font-size:12px !important; color:#808080; padding-left:10px"><span class="date"></span></div>',
@@ -239,7 +239,7 @@ class PdfController {
                         res.sendStatus(500);
                     }
                     else {
-                        FileManager.delete_file(`temp/pdf_generated_files/report_${unique_identifier}.pdf`)
+                        // FileManager.delete_file(`temp/pdf_generated_files/report_${unique_identifier}.pdf`)
                     }
                 });
             }
