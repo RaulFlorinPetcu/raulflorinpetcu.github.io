@@ -23,9 +23,8 @@ class InventarController {
         const tva = body_data.tva;
         const existing_produs_array: Array<PRODUS> = [];
 
-        const dir = require('path').resolve(__dirname, '../../temp');
 
-        var data = fs.readFileSync(dir + `/${csv?.filename}`)
+        var data = await fs.readFileSync(`temp/${csv?.filename}`)
         .toString() // convert Buffer to string
         .split('\n') // split string to lines
         .map(e => e.trim()) // remove white spaces for each line
@@ -59,11 +58,11 @@ class InventarController {
                 else {
                     const new_produs = new PRODUS();
                     new_produs.inventar_id = inventar_id;
-                    new_produs.name = produs.name;
+                    new_produs.name = produs.name.toUpperCase();
                     new_produs.price = Number.isNaN(produs.price) ? 0 : produs.price;
                     new_produs.quantity = Number.isNaN(produs.quantity) ? 0 : produs.quantity;
                     new_produs.tva = tva;
-                    new_produs.unit_measure = produs.unit_measure;
+                    new_produs.unit_measure = produs.unit_measure.toUpperCase();
                     new_produs.created_at = DateTimeService.format_standard_date(new Date());
                     new_produs.updated_at = DateTimeService.format_standard_date(new Date());
     
