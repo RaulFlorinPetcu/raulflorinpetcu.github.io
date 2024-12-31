@@ -5,8 +5,8 @@ ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
 
 WORKDIR /usr/src/app
 
-# Set correct permissions for the work directory
-RUN mkdir -p /usr/src/app/temp && chown -R node:node /usr/src/app
+# Create temp directory with write permissions for all users
+RUN mkdir -p /usr/src/app/temp && chmod 777 /usr/src/app/temp
 
 COPY --chown=node:node package.json .
 
