@@ -206,11 +206,11 @@ class PdfController {
 
                 const unique_identifier = new Date().getTime();
 
-                console.log(__dirname)
+                console.log(process.cwd())
     
                 // Generate PDF for the report
                 await page.pdf({ 
-                    path: `./temp/pdf_generated_files/report_${unique_identifier}.pdf`, 
+                    path: `${process.cwd()}/temp/pdf_generated_files/report_${unique_identifier}.pdf`, 
                     format: "A4", 
                     displayHeaderFooter: true,
                     // headerTemplate: '<div id="header-template" style="font-size:12px !important; color:#808080; padding-left:10px"><span class="date"></span></div>',
@@ -225,7 +225,7 @@ class PdfController {
 
 
     
-                res.sendFile(`report_${unique_identifier}.pdf`, {root:"temp/pdf_generated_files/"}, (err) =>{
+                res.sendFile(`report_${unique_identifier}.pdf`, {root:`${process.cwd()}temp/pdf_generated_files/`}, (err) =>{
                     if (err) {
                         console.log(err);
                         res.sendStatus(500);
