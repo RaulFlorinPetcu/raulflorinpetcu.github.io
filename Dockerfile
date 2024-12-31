@@ -5,7 +5,9 @@ ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
 
 WORKDIR /usr/src/app
 
-COPY package*.json ./
+EXPOSE 5000
+USER node
+COPY --chown=node:node package*.json ./
 RUN npm install
-COPY . .
+COPY --chown=node:node . .
 RUN npm run start
