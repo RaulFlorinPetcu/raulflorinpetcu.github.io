@@ -193,7 +193,18 @@ class PdfController {
                     </body>
                 </html>
                 `;
-                    const browser = yield puppeteer_1.default.launch({ headless: true });
+                    const browser = yield puppeteer_1.default.launch({
+                        headless: true,
+                        args: [
+                            "--disable-setuid-sandbox",
+                            "--no-sandbox",
+                            "--single-process",
+                            "--no-zygote",
+                        ],
+                        executablePath: process.env.NODE_ENV === "production"
+                            ? process.env.PUPPETEER_EXECUTABLE_PATH
+                            : puppeteer_1.default.executablePath()
+                    });
                     const page = yield browser.newPage();
                     yield page.setContent(html_template);
                     const date = new Date().toLocaleDateString();
