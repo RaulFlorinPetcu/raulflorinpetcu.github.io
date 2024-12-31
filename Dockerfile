@@ -5,7 +5,8 @@ ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
 
 WORKDIR /usr/src/app
 
-
+# Set correct permissions for the work directory
+RUN mkdir -p /usr/src/app/temp && chown -R node:node /usr/src/app
 
 COPY --chown=node:node package.json .
 
@@ -17,5 +18,4 @@ USER node
 
 EXPOSE 5000
 
-RUN npm run start
-
+CMD ["npm", "run", "start"]
