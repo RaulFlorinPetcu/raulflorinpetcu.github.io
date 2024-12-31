@@ -5,15 +5,19 @@ ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
 
 WORKDIR /usr/src/app
 
-EXPOSE 5000
-USER node
+
+
+COPY --chown=node:node package.json .
 
 RUN npm install --unsafe-perm=true
 
-COPY . .
+COPY --chown=node:node . .
 
-RUN chown -R node /app/node_modules
+RUN chown -R node /usr/src/app/node_modules
 
 USER node
 
+EXPOSE 5000
+
 RUN npm run start
+
