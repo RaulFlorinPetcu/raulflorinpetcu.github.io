@@ -13,8 +13,6 @@ RUN npm install --unsafe-perm=true
 
 COPY --chown=node:node . .
 
-RUN chown -R node /usr/src/app/node_modules
-
 USER node
 
 EXPOSE 5000
